@@ -13,9 +13,18 @@ router.get("/", (req, res) => {
   .getPrinters()
   .then(result=>{
     console.log(result);
-    res.json({
-      hello: "hi!"
-    })
+    res.json(result)
+  })
+  .catch(console.error);
+  
+});
+
+router.get("/defaultPrint", (req, res) => {
+  ptp
+  .getDefaultPrinter()
+  .then(result=>{
+    console.log(result);
+    res.json(result)
   })
   .catch(console.error);
   
