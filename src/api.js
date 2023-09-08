@@ -1,6 +1,6 @@
 const express = require("express");
 const serverless = require("serverless-http");
-
+const ptp = require("pdf-to-printer");
 // Create an instance of the Express app
 const app = express();
 
@@ -9,9 +9,16 @@ const router = express.Router();
 
 // Define a route that responds with a JSON object when a GET request is made to the root path
 router.get("/", (req, res) => {
-  res.json({
-    hello: "hi!"
-  });
+  ptp
+  .getPrinters()
+  .then(result=>{
+    console.log(result);
+    res.json({
+      hello: "hi!"
+    })
+  })
+  .catch(console.error);
+  
 });
 
 // Use the router to handle requests to the `/.netlify/functions/api` path
